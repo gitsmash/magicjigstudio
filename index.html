@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MagicJig — Software Company</title>
+  <meta name="description" content="MagicJig LLC is a software company building thoughtful, modern digital products. Founded in California in 2025." />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-soft: #12121c;
+      --text: #f0f0f5;
+      --muted: #a0a0b8;
+      --faint: #6a6a85;
+      --border: rgba(255, 255, 255, 0.08);
+      --accent-1: #c084fc;
+      --accent-2: #818cf8;
+      --accent-3: #38bdf8;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent-3);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header / Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 6rem 0 5rem;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      max-width: 120vw;
+      background: radial-gradient(circle, rgba(120, 80, 255, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      margin: 1.25rem auto 0;
+      max-width: 540px;
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      color: var(--muted);
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #0a0a0f;
+      background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+    }
+
+    .cta:hover {
+      opacity: 0.9;
+      text-decoration: none;
+    }
+
+    /* Sections */
+    section {
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-2);
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .lead + .lead {
+      margin-top: 1rem;
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .card.soon {
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 0.85rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-2);
+      background: rgba(129, 140, 248, 0.12);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+    }
+
+    /* Contact */
+    .contact-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-email {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+      color: var(--faint);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-meta {
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <span class="brand">MagicJig</span>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="container">
+        <h1 class="logo">MagicJig</h1>
+        <p class="tagline">A software company building thoughtful, modern digital products.</p>
+        <a class="cta" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <p class="section-label">About Us</p>
+        <h2>Who we are</h2>
+        <p class="lead">
+          MagicJig LLC is a software company founded in California in 2025. We design and
+          develop applications and tools that help people get more done with less friction.
+        </p>
+        <p class="lead">
+          Our team is focused on quality, simplicity, and craftsmanship — bringing careful
+          engineering and considered design to every product we ship.
+        </p>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <p class="section-label">Products &amp; Services</p>
+        <h2>What we build</h2>
+        <p class="lead">
+          We create software across web and mobile platforms. Our first products are in
+          active development — here's a glimpse of what's on the way.
+        </p>
+        <div class="grid">
+          <div class="card soon">
+            <h3>Applications</h3>
+            <p>Native and cross-platform apps designed for performance and a clean user experience.</p>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <div class="card soon">
+            <h3>Developer Tools</h3>
+            <p>Utilities and integrations that streamline everyday workflows for teams and individuals.</p>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <div class="card soon">
+            <h3>Custom Software</h3>
+            <p>Tailored solutions built to fit specific business needs, from concept to delivery.</p>
+            <span class="badge">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <p class="section-label">Contact</p>
+        <h2>Get in touch</h2>
+        <p class="lead">
+          We'd love to hear from you. For questions, partnerships, or support, reach out anytime.
+        </p>
+        <div class="contact-card">
+          <p>Email us at</p>
+          <a class="contact-email" href="mailto:support@magicjigstudio.com">support@magicjigstudio.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-meta">
+        <strong>MagicJig LLC</strong><br />
+        Founded in California, 2025
+      </div>
+      <div class="footer-meta">
+        <a href="mailto:support@magicjigstudio.com">support@magicjigstudio.com</a><br />
+        &copy; 2026 MagicJig LLC. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
